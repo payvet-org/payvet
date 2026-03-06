@@ -1,5 +1,3 @@
-You can copy this directly into README.md.
-
 # Payvet
 
 **Payvet** is a decentralized escrow platform built on **BNBChain** that enables secure, trustless payments between buyers and sellers.
@@ -401,23 +399,12 @@ Contact
 
 Website
 
-https://payvet.io
+https://payvet.app
 
 Email
 
-team@payvet.com
+team@payvet.app
 
 Telegram
 
 @Payvet
-
-
----
-
-If you want, I can also help you add **3 things that will make this repo look 10x more legit to grant reviewers**:
-
-1️⃣ **Smart contract architecture diagram**  
-2️⃣ **Escrow state machine diagram**  
-3️⃣ **API + SDK documentation section**
-
-These are **small additions but make projects look much more serious to BNBChain grants.**
