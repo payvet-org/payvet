@@ -1,16 +1,14 @@
 # Payvet
 
-**Payvet** is a decentralized escrow platform built on **BNBChain** that enables secure, trustless payments between buyers and sellers.
+**Payvet** is a decentralized escrow platform built on BNBChain that enables secure, trustless payments between buyers and sellers. Funds are held in escrow via smart contracts and released automatically once agreed conditions are met — no intermediaries, no delays, no disputes left unresolved.
 
-The platform holds funds in escrow using smart contracts and releases them automatically once agreed conditions are met.
-
-Payvet eliminates the need for intermediaries in online transactions and reduces fraud, payment disputes, and payment delays.
+🌐 [payvet.app](https://payvet.app)
 
 ---
 
-# Overview
+## Overview
 
-Online transactions often require trust between two parties who may not know each other. This problem is common across many digital ecosystems, including:
+Online transactions require trust between parties who may not know each other. This challenge is widespread across:
 
 - Freelance marketplaces
 - Peer-to-peer transactions
@@ -18,393 +16,296 @@ Online transactions often require trust between two parties who may not know eac
 - E-commerce platforms
 - Web3 marketplaces
 
-Traditional escrow services rely on centralized intermediaries. These intermediaries introduce several risks:
+Traditional escrow services depend on centralized intermediaries that introduce delayed payments, high fees, lack of transparency, platform censorship, and counterparty risk.
 
-- Delayed payments
-- High service fees
-- Lack of transparency
-- Platform censorship
-- Counterparty risk
-
-Payvet solves these issues using **BNBChain smart contracts**, allowing funds to be securely locked, verified, and released automatically according to predefined transaction rules.
-
-By moving escrow logic on-chain, Payvet provides a **trustless, transparent, and programmable payment system** for the modern internet.
+Payvet solves these problems using BNBChain smart contracts — funds are securely locked, verified, and released automatically according to predefined rules. The result is a **trustless, transparent, and programmable payment system** for the modern internet.
 
 ---
 
-# Key Features
+## Key Features
 
-## Decentralized Escrow
-
-Funds are locked inside a smart contract until the conditions of the agreement are satisfied.
-
-No third-party intermediary controls the funds.
-
----
-
-## Conditional Payments
-
-Escrow contracts support programmable payment conditions such as:
-
-- Delivery confirmation
-- Milestone completion
-- Time-based release
-- Multi-step verification
+| Feature | Description |
+|---|---|
+| **Decentralized Escrow** | Funds are locked in a smart contract — no third party controls them |
+| **Conditional Payments** | Programmable release conditions: delivery, milestones, time-locks, multi-step verification |
+| **Dispute Resolution** | Contracts enter dispute mode with resolution mechanisms; decentralized arbitration planned |
+| **Multi-party Verification** | Supports buyer + seller approval, escrow agent verification, and DAO arbitration |
+| **Transparent Transactions** | All escrow activity is on-chain — fully immutable and verifiable |
+| **Low Fees** | Built on BNBChain for affordable gas costs on both small and large payments |
 
 ---
 
-## Dispute Resolution
+## How It Works
 
-If a dispute occurs, the escrow contract can enter **dispute mode**, enabling resolution mechanisms to determine the outcome.
-
-Future versions may support decentralized arbitration.
-
----
-
-## Multi-party Verification
-
-Transactions can require confirmation from multiple parties before funds are released.
-
-This allows use cases like:
-
-- Buyer + Seller approval
-- Escrow agent verification
-- DAO or arbitrator verification
+```
+Step 1 — Create Escrow      Buyer defines: amount, recipient, release conditions, expiry
+Step 2 — Deposit Funds      Buyer locks funds in the smart contract
+Step 3 — Execution          Seller delivers the agreed product or service
+Step 4 — Verification       Conditions verified by buyer, both parties, or automated logic
+Step 5 — Fund Release       Smart contract automatically releases funds to the seller
+```
 
 ---
 
-## Transparent Transactions
+## Use Cases
 
-All escrow transactions are recorded on-chain, ensuring:
-
-- Full transparency
-- Immutable transaction history
-- Verifiable transaction outcomes
-
----
-
-## Low Transaction Costs
-
-Payvet leverages **BNBChain's low gas fees**, making escrow transactions affordable for both small and large payments.
+- **Freelance Payments** — Clients lock funds before work begins; payment releases on completion
+- **E-commerce** — Buyers purchase goods with funds held until delivery is confirmed
+- **P2P Transactions** — Reduce fraud risk for individuals trading assets online
+- **Web3 Marketplaces** — NFT platforms and decentralized exchanges can integrate Payvet for escrow
+- **Service Marketplaces** — Milestone-based payments for long-term or consulting projects
 
 ---
 
-# How Payvet Works
+## System Architecture
 
-### Step 1 — Create Escrow
+```
+                +-----------------------+
+                |       Frontend        |
+                |   (Next.js / React)   |
+                +----------+------------+
+                           |
+                           | Web3 Provider
+                           |
+                +----------v------------+
+                |      Wallet Layer     |
+                | (MetaMask / WalletConnect)
+                +----------+------------+
+                           |
+                           | RPC Calls
+                           |
+                +----------v------------+
+                |    BNBChain Network   |
+                +----------+------------+
+                           |
+            +--------------+---------------+
+            |                              |
++-----------v-----------+      +-----------v-----------+
+|    Escrow Contract    |      |   Dispute Manager     |
+|                       |      |                       |
+| - Create Escrow       |      | - Trigger Disputes    |
+| - Lock Funds          |      | - Arbitration Logic   |
+| - Verify Conditions   |      | - Resolve Conflicts   |
+| - Release Funds       |      |                       |
++-----------------------+      +-----------------------+
+```
 
-A buyer creates an escrow agreement specifying:
+**Frontend Layer** — UI for creating and managing escrows with wallet connection and transaction interaction
 
-- Payment amount
-- Recipient
-- Release conditions
-- Optional dispute rules
-- Expiration time
+**Wallet Layer** — User authentication and transaction signing via crypto wallets
 
----
+**Smart Contract Layer** — Core escrow logic, fund custody, and dispute management
 
-### Step 2 — Deposit Funds
-
-The buyer deposits funds into the escrow smart contract.
-
-The funds remain locked until conditions are fulfilled.
-
----
-
-### Step 3 — Transaction Execution
-
-The seller delivers the agreed product or service.
-
----
-
-### Step 4 — Verification
-
-Conditions are verified by:
-
-- The buyer
-- Both parties
-- Automated contract logic
-- Third-party arbitrators (optional)
-
----
-
-### Step 5 — Fund Release
-
-Once conditions are satisfied, the smart contract automatically releases the funds to the seller.
+**Integration Layer** — APIs and SDKs for external developers
 
 ---
 
-# Use Cases
+## Escrow State Machine
 
-## Freelance Payments
+Every Payvet escrow follows a defined lifecycle:
 
-Clients lock funds before work begins and release payment when the project is completed.
-
----
-
-## E-commerce Transactions
-
-Buyers can safely purchase goods with funds held securely until delivery is confirmed.
-
----
-
-## Peer-to-Peer Transactions
-
-Individuals trading assets online can reduce fraud risk using escrow-backed payments.
-
----
-
-## Web3 Marketplaces
-
-NFT marketplaces or decentralized trading platforms can integrate Payvet for escrow functionality.
-
----
-
-## Service Marketplaces
-
-Milestone-based payments for long-term projects or consulting agreements.
-
----
-
-# System Architecture
-
-Payvet consists of three primary layers.
+```
+    +-----------+
+    |  Created  |   Escrow initialized, terms defined, no funds yet
+    +-----------+
+          |
+          | Buyer deposits funds
+          v
+    +-----------+
+    |  Funded   |   Funds locked in contract
+    +-----------+
+          |
+          | Seller performs work
+          v
+    +-----------+
+    | Completed |   Seller marks work as complete
+    +-----------+
+      /         \
+     /           \
+    v             v
++-----------+  +-----------+
+| Released  |  |  Dispute  |   Buyer approves → funds sent to seller
++-----------+  +-----------+   Dispute raised → enters resolution
+                    |
+                    v
+              +-----------+
+              | Resolved  |   Arbitrator or resolution mechanism decides
+              +-----------+
+```
 
 ---
 
-## Smart Contracts
+## Technology Stack
 
-BNBChain smart contracts handle the core escrow logic:
-
-- Escrow creation
-- Fund locking
-- Conditional verification
-- Fund release
-- Dispute triggering
-
-These contracts operate fully on-chain.
-
----
-
-## Web Application
-
-The Payvet web interface enables users to:
-
-- Create escrow agreements
-- Deposit funds
-- Monitor escrow status
-- Confirm transactions
-- Initiate dispute resolution
-
-The UI abstracts blockchain complexity for everyday users.
+| Layer | Technologies |
+|---|---|
+| Blockchain | BNBChain |
+| Smart Contracts | Solidity |
+| Frontend | React, Next.js, Tailwind CSS |
+| Web3 Libraries | wagmi, ethers.js, viem |
+| Backend | Node.js, API services, Webhooks |
+| Wallet Support | MetaMask, WalletConnect, BNBChain-compatible wallets |
 
 ---
 
-## Developer Integration Layer
-
-Payvet provides APIs and SDKs so developers can integrate escrow functionality into:
-
-- Marketplaces
-- Payment platforms
-- DAO tools
-- DeFi applications
-- NFT trading systems
-
----
-
-# Smart Contract Features
-
-Core smart contract capabilities include:
-
-- Escrow creation
-- Secure fund deposits
-- Conditional release logic
-- Multi-party approvals
-- Dispute triggers
-- Time-based expiration
-- Emergency recovery logic
-
-Contracts are designed to be **modular, upgradeable, and secure**.
-
----
-
-# Technology Stack
-
-## Blockchain
-
-BNBChain
-
----
-
-## Smart Contracts
-
-Solidity
-
----
-
-## Frontend
-
-- React
-- Next.js
-- Tailwind CSS
-
----
-
-## Web3 Libraries
-
-- wagmi
-- ethers.js
-- viem
-
----
-
-## Backend Services
-
-- Node.js
-- API services
-- Webhooks for event monitoring
-
----
-
-## Wallet Integration
-
-Payvet supports popular wallets including:
-
-- MetaMask
-- WalletConnect
-- BNBChain-compatible wallets
-
----
-
-# Installation
-
-Clone the repository:
+## Installation
 
 ```bash
+# Clone the repository
 git clone https://github.com/payvet/payvet
 cd payvet
 
-Install dependencies:
-
+# Install dependencies
 npm install
 
-Run development server:
-
+# Run development server
 npm run dev
 
-Compile smart contracts:
-
+# Compile smart contracts
 npx hardhat compile
 
-Deploy contracts to BNBChain testnet:
-
+# Deploy to BNBChain testnet
 npx hardhat run scripts/deploy.js --network bnbTestnet
-Project Structure
+```
+
+### Project Structure
+
+```
 payvet/
-│
 ├── contracts/
 │   ├── Escrow.sol
-│   ├── DisputeManager.sol
-│
+│   └── DisputeManager.sol
 ├── frontend/
 │   ├── components/
-│   ├── pages/
-│
+│   └── pages/
 ├── scripts/
-│   ├── deploy.js
-│
+│   └── deploy.js
 ├── test/
-│   ├── escrow.test.js
-│
+│   └── escrow.test.js
 ├── docs/
 │   └── architecture.md
-│
 └── README.md
-Roadmap
-Phase 1
+```
 
-Core escrow smart contract development.
+---
 
-Phase 2
+## Developer API
 
-Frontend web interface and wallet integrations.
+**Base URL:** `https://api.payvet.app`
 
-Phase 3
+### Endpoints
 
-Advanced dispute resolution system.
+**Create Escrow**
+```
+POST /escrow/create
+```
+```json
+{
+  "buyer": "wallet_address",
+  "seller": "wallet_address",
+  "amount": "value",
+  "token": "BNB or BEP20 token",
+  "conditions": "escrow conditions",
+  "expiry": "timestamp"
+}
+```
+Response: `{ "escrowId": "12345", "status": "created" }`
 
-Phase 4
+**Deposit Funds**
+```
+POST /escrow/deposit
+```
+```json
+{ "escrowId": "12345", "amount": "value" }
+```
 
-Developer SDK and third-party integrations.
+**Release Funds**
+```
+POST /escrow/release
+```
+```json
+{ "escrowId": "12345", "approvedBy": "buyer_wallet" }
+```
 
-Phase 5
+**Raise Dispute**
+```
+POST /escrow/dispute
+```
+```json
+{ "escrowId": "12345", "reason": "description" }
+```
 
-Mainnet launch on BNBChain.
+---
 
-Security
+## JavaScript SDK
 
-Security is a top priority for Payvet.
+```bash
+npm install payvet-sdk
+```
 
-Security practices include:
+```javascript
+import Payvet from "payvet-sdk"
 
-Smart contract audits
+const payvet = new Payvet({
+  network: "bnb",
+  rpcUrl: "https://bsc-dataseed.binance.org/"
+})
 
-Extensive automated testing
+// Create an escrow
+const escrow = await payvet.createEscrow({
+  buyer: walletAddress,
+  seller: sellerAddress,
+  amount: "1 BNB",
+  conditions: "Delivery confirmed"
+})
 
-Open-source transparency
+// Release funds
+await payvet.releaseEscrow(escrow.id)
+```
 
-Bug bounty programs
+---
 
-Continuous monitoring
+## Roadmap
 
-Users should always verify escrow conditions before depositing funds.
+- [x] **Phase 1** — Core escrow smart contract development
+- [ ] **Phase 2** — Frontend web interface and wallet integrations
+- [ ] **Phase 3** — Advanced dispute resolution system
+- [ ] **Phase 4** — Developer SDK and third-party integrations
+- [ ] **Phase 5** — Mainnet launch on BNBChain
 
-Ecosystem Impact
+---
 
-Payvet strengthens the BNBChain ecosystem by providing essential infrastructure for decentralized commerce.
+## Security
 
-Key ecosystem benefits include:
+Security is a top priority. Payvet's practices include:
 
-Increased on-chain transactions
+- Smart contract audits
+- Extensive automated testing
+- Open-source transparency
+- Bug bounty programs
+- Continuous monitoring
 
-Secure payment rails for Web3 applications
+> Always verify escrow conditions before depositing funds.
 
-Developer-friendly escrow infrastructure
+---
 
-Trustless financial agreements
-
-By making escrow programmable and accessible, Payvet enables new categories of decentralized applications.
-
-Contributing
+## Contributing
 
 We welcome contributions from developers, researchers, and designers.
 
-To contribute:
-
-Fork the repository
-
-Create a feature branch
-
-Commit your changes
-
-Submit a pull request
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Submit a pull request
 
 Please ensure all contributions follow project coding standards.
 
-License
+---
 
-This project is licensed under the MIT License.
+## Contact
 
-Contact
-
-Website
-
-https://payvet.app
-
-Email
-
-team@payvet.app
-
-Telegram
-
-@Payvet
+| Channel | Link |
+|---|---|
+| Website | [payvet.app](https://payvet.app) |
+| Email | [team@payvet.app](mailto:team@payvet.app) |
+| Telegram | [@Payvet](https://t.me/Payvet) |
